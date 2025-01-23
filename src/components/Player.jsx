@@ -10,8 +10,13 @@ export default function Player({ initialName, symbol }) {
   }
 
   function handleEditChange(e) {
-    const inputValue = e.target.value;
-    setplayerInputValue(inputValue);
+    setplayerInputValue(e.target.value);
+  }
+
+  function handleEnter(e) {
+    if (e.key === "Enter") {
+      setplayerInputValue(e.target.value);
+    }
   }
 
   let editablePlayerName = <span className="player-name">{playerName}</span>;
@@ -22,6 +27,7 @@ export default function Player({ initialName, symbol }) {
         required
         value={playerName}
         onChange={handleEditChange}
+        onKeyDown={(e) => e.key === "Enter" && handleEditClick()}
       />
     );
   }
