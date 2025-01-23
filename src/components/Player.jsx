@@ -5,7 +5,7 @@ export default function Player({ name, symbol }) {
   const [playerInputValue, setplayerInputValue] = useState(name);
 
   function handleEditClick() {
-    setIsEditing(true);
+    !isEditing ? setIsEditing(true) : setIsEditing(false);
   }
 
   function handleEditChange(e) {
