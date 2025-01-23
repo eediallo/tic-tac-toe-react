@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-export default function Player({ name, symbol }) {
+export default function Player({ initialName, symbol }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [playerInputValue, setplayerInputValue] = useState(name);
+  const [playerName, setplayerInputValue] = useState(initialName);
 
   function handleEditClick() {
-    !isEditing ? setIsEditing(true) : setIsEditing(false);
+    //  setIsEditing(!isEditing); // works fine but has issue for react schedule behavior
+    setIsEditing((editing) => !editing); // recommended
   }
 
   function handleEditChange(e) {
@@ -13,13 +14,13 @@ export default function Player({ name, symbol }) {
     setplayerInputValue(inputValue);
   }
 
-  let playerName = <span className="player-name">{name}</span>;
+  let editablePlayerName = <span className="player-name">{playerName}</span>;
   if (isEditing) {
-    playerName = (
+    editablePlayerName = (
       <input
         type="text"
         required
-        value={playerInputValue}
+        value={playerName}
         onChange={handleEditChange}
       />
     );
@@ -28,7 +29,7 @@ export default function Player({ name, symbol }) {
   return (
     <li>
       <span className="player">
-        {playerName}
+        {editablePlayerName}
         <span className="player-symbol">{symbol}</span>
         <button onClick={handleEditClick}>
           {!isEditing ? "Edit" : "Save"}
