@@ -10,7 +10,7 @@ const PLAYERS = {
   O: "Player 2",
 };
 
-let initialGameBoard = [
+let INITIAL_GAME_BOARD = [
   [null, null, null],
   [null, null, null],
   [null, null, null],
@@ -47,7 +47,7 @@ function deriveWinner(gameBoard, players) {
 }
 
 function deriveGameBoard(gameTurns) {
-  let gameBoard = [...initialGameBoard.map((array) => [...array])];
+  let gameBoard = [...INITIAL_GAME_BOARD.map((array) => [...array])];
 
   for (const turn of gameTurns) {
     const { square, player } = turn;
